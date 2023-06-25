@@ -1,0 +1,26 @@
+import sklearn  # noqa
+import sklearn._min_dependencies as min_deps  # noqa
+from sklearn._build_utils import _check_cython_version  # noqa
+from sklearn.externals._packaging.version import parse as parse_version  # noqa
+
+
+VERSION = sklearn.__version__
+
+# Custom clean command to remove build artifacts
+
+
+class CleanCommand(Command):
+    description = "Remove build artifacts from the source tree"
+
+    user_options = []
+
+    def initialize_options(self):
+        pass
+
+    def finalize_options(self):
+        pass
+
+    def run(self):
+        # Remove c files if we are not within a sdist package
+        cwd = os.path.abspath(os.path.dirname(__file__))
+        remove_c_files = not os.path.exists(os.path.join(cwd, "PKG-INFO"))
