@@ -1,0 +1,17 @@
+import csv
+import numpy as np
+import math
+import torch
+import os
+import unidecode
+from collections import defaultdict, OrderedDict
+from sklearn.datasets import fetch_20newsgroups
+
+from collections import defaultdict
+from torch.utils.data import DataLoader, Subset
+from datasets import load_dataset
+
+
+class ToInt:
+    def __call__(self, pic):
+        return pic * 255
